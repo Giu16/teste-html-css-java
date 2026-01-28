@@ -315,18 +315,24 @@
     @media (max-width: 900px) {
   main {
     flex-direction: column;
+    align-items: center; /* centraliza filhos no eixo horizontal */
     padding: 0 20px 40px;
-    align-items: center; /* garante centralização dos itens */
   }
   .photo-container {
-    max-width: 90vw;
-    height: auto;
-    margin: 0 auto; /* centraliza horizontalmente */
+    max-width: 90vw !important;
+    width: 100% !important;
+    margin: 0 auto !important; /* centraliza */
+    flex: none !important; /* remove flex grow/shrink */
+    display: block !important; /* para garantir centralização */
   }
   .photo-container img {
-    height: auto;
+    width: 100% !important;
+    height: auto !important;
     max-height: 400px;
+    display: block;
+    margin: 0 auto;
   }
+  /* Aba lateral abaixo da foto, full width */
   .info-tab {
     position: relative !important;
     right: auto !important;
@@ -338,15 +344,8 @@
     box-shadow: 0 0 25px #ee82ee !important;
     animation: none !important;
   }
-  .presentation {
-    max-width: 90vw;
-    padding: 25px 20px;
-    margin-top: 30px;
-  }
-  .gallery {
-    max-width: 90vw;
-  }
 }
+
   </style>
 </head>
 <body>
