@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Juliana Costa</title>
+  <!-- Fonte Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Corpo e fundo animado florescente */
+    body, html {
+      height: 100%;
+      font-family: 'Open Sans', sans-serif;
+      background: #0d1117;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+    /* Fundo gradiente animado */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(270deg, #ee82ee, #b266b2, #ee82ee, #bb66bb, #b266b2);
+      background-size: 1000% 1000%;
+      animation: gradientMove 30s ease infinite;
+      opacity: 0.3;
+      filter: brightness(1.2) contrast(1.2);
+      z-index: -2;
+    }
+
+    /* Sobreposição partículas florescentes pulsantes */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(238, 130, 238, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(238, 130, 238, 0.15), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(178, 102, 178, 0.15), transparent 50%);
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.15; }
+      100% { opacity: 0.35; }
+    }
+
+    /* Header fixo e estilizado */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 70px;
+      background-color: rgba(13, 17, 23, 0.85);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+    header h1 {
+      color: #ee82ee;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    /* Conteúdo principal */
+    main {
+      margin: 100px auto 60px;
+      max-width: 1100px;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* Container da foto da namorada */
+    .photo-container {
+      position: relative;
+      max-width: 400px;
+      flex: 1 1 380px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow:
+        0 0 15px #ee82ee,
+        0 0 30px #ee82ee,
+        0 0 60px #ee82ee;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      opacity: 0;
+      transform: translateX(50px);
+      transition-property: opacity, transform, box-shadow;
+      transition-duration: 1s, 1s, 0.1s;
+      transition-timing-function: ease-out;
+    }
+    .photo-container.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .photo-container:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 25px #ee82ee,
+        0 0 50px #ee82ee,
+        0 0 100px #ee82ee;
+    }
+    .photo-container img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 25px;
+      display: block;
+    }
+
+    /* Aba lateral florescente */
+    .info-tab {
+      position: absolute;
+      top: 40%;
+      right: -170px;
+      width: 170px;
+      background: #ee82ee;
+      color: white;
+      padding: 25px 20px;
+      border-radius: 40px 0 0 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.4;
+      box-shadow:
+        0 0 15px #ee82ee,
+        0 0 30px #ee82ee,
+        0 0 60px #ee82ee,
+        0 0 90px #ee82ee;
+      animation: glow 3s ease-in-out infinite alternate;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow:
+          0 0 10px #ee82ee,
+          0 0 20px #ee82ee,
+          0 0 30px #ee82ee,
+          0 0 40px #ee82ee;
+      }
+      to {
+        box-shadow:
+          0 0 25px #ee82ee,
+          0 0 45px #ee82ee,
+          0 0 70px #ee82ee,
+          0 0 100px #ee82ee;
+      }
+    }
+
+    /* Seção texto apresentativo */
+    .presentation {
+      max-width: 550px;
+      flex: 1 1 500px;
+      background: rgba(255 255 255 / 0.1);
+      border-radius: 20px;
+      padding: 30px 40px;
+      box-shadow: 0 0 20px rgba(238, 130, 238, 0.25);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      user-select: none;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .presentation.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .presentation h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #ee82ee;
+      letter-spacing: 1px;
+    }
+    .presentation p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #f0e6fa;
+    }
+
+    /* Galeria */
+    .gallery {
+      width: 100%;
+      max-width: 1100px;
+      margin: 60px auto 40px;
+      color: #d3d3d3;
+      user-select: none;
+      text-align: center;
+    }
+    .gallery h2 {
+      font-size: 2rem;
+      color: #5a189a;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow:
+        0 0 10px #ee82ee,
+        0 0 20px #ee82ee;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-grid img:hover,
+    .gallery-grid img:focus {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 20px #ee82ee,
+        0 0 40px #ee82ee;
+      outline: none;
+    }
+
+    /* Modal */
+ .modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 17, 23, 0.9);
+  display: none; /* Alterado para 'none' */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 20px;
+  box-shadow:
+    0 0 25px #ee82ee,
+    0 0 50px #ee82ee;
+}
+
+#closeModal {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: #ee82ee;
+  border: none;
+  border-radius: 50%;
+  color: #0d1117;
+  font-size: 1.8rem;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  box-shadow:
+    0 0 15px #ee82ee;
+  transition: background 0.3s ease;
+}
+
+    #closeModal {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      background: #ee82ee;
+      border: none;
+      border-radius: 50%;
+      color: #0d1117;
+      font-size: 1.8rem;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      box-shadow:
+        0 0 15px #ee82ee;
+      transition: background 0.3s ease;
+    }
+    #closeModal:hover,
+    #closeModal:focus {
+      background: #d875d8;
+      outline: none;
+    }
+
+    /* Responsivo */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+        padding: 0 20px 40px;
+      }
+      .photo-container {
+        max-width: 90vw;
+        height: auto;
+      }
+      .photo-container img {
+        height: auto;
+        max-height: 400px;
+      }
+      .info-tab {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 100%;
+        border-radius: 20px;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 0 0 25px #ee82ee;
+        animation: none;
+      }
+      .presentation {
+        max-width: 90vw;
+        padding: 25px 20px;
+        margin-top: 30px;
+      }
+      .gallery {
+        max-width: 90vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Minha Linda</h1>
+  </header>
+
+  <main>
+    <div class="photo-container" aria-label="Foto dela" id="photoContainer">
+      <img src="gira sol.jpeg" alt="Foto dela" loading="lazy"/>
+      <div class="info-tab" role="note">
+        Amor da minha vida!
+      </div>
+    </div>
+
+    <section class="presentation" aria-label="Apresentação sobre ela" id="presentation">
+      <h2>Juliana,</h2>
+      <p> Entre suas mãos, como girassol que se abre ao sol, me deixo inteira. Cada gesto seu ilumina meu mundo, 
+        cada toque faz meu coração girar na sua direção. Amar você é nascer todos os dias, 
+        e quero que sinta cada amanhecer comigo.
+      </p>
+      <p>
+        Eu te amo.
+      </p>
+    </section>
+
+    <!-- Galeria de fotos -->
+    <section class="gallery" aria-label="Galeria de fotos">
+      <h2>Amor...</h2>
+      <div class="gallery-grid">
+        <img src="branco.jpeg" alt="Foto 1" tabindex="0" />
+        <img src="buquê.jpeg" alt="Foto 2" tabindex="0" />
+        <img src="eu e você.jpeg" alt="Foto 3" tabindex="0" />
+        <img src="nós duas.jpeg" alt="Foto 4" tabindex="0" />
+        <img src="rolê.jpeg" alt="Foto 4" tabindex="0" />
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal para visualização -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal-content">
+    <button id="closeModal" aria-label="Fechar galeria">&times;</button>
+    <img id="modalImage" src="" alt="" />
+  </div>
+</div>
+
+  <script>
+    // Mostrar animação fade-in ao scroll
+    const isVisible = el => {
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
+    };
+
+    const photoContainer = document.getElementById('photoContainer');
+    const presentation = document.getElementById('presentation');
+
+    const scrollHandler = () => {
+      if (isVisible(photoContainer)) photoContainer.classList.add('visible');
+      if (isVisible(presentation)) presentation.classList.add('visible');
+    };
+
+    window.addEventListener('scroll', scrollHandler);
+    window.addEventListener('load', scrollHandler);
+
+    // Galeria modal
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModalBtn = document.getElementById('closeModal');
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modal.hidden = false;
+        closeModalBtn.focus();
+        document.body.style.overflow = 'hidden'; // trava scroll fundo
+      });
+
+      img.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          img.click();
+        }
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.hidden = true;
+      modalImage.src = '';
+      document.body.style.overflow = '';
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        closeModalBtn.click();
+      }
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !modal.hidden) {
+        closeModalBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
