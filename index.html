@@ -313,38 +313,40 @@
 
     /* Responsivo */
     @media (max-width: 900px) {
-      main {
-        flex-direction: column;
-        padding: 0 20px 40px;
-      }
-      .photo-container {
-        max-width: 90vw;
-        height: auto;
-      }
-      .photo-container img {
-        height: auto;
-        max-height: 400px;
-      }
-      .info-tab {
-        position: relative;
-        right: auto;
-        top: auto;
-        width: 100%;
-        border-radius: 20px;
-        padding: 20px;
-        margin-top: 20px;
-        box-shadow: 0 0 25px #ee82ee;
-        animation: none;
-      }
-      .presentation {
-        max-width: 90vw;
-        padding: 25px 20px;
-        margin-top: 30px;
-      }
-      .gallery {
-        max-width: 90vw;
-      }
-    }
+  main {
+    flex-direction: column;
+    padding: 0 20px 40px;
+    align-items: center; /* garante centralização dos itens */
+  }
+  .photo-container {
+    max-width: 90vw;
+    height: auto;
+    margin: 0 auto; /* centraliza horizontalmente */
+  }
+  .photo-container img {
+    height: auto;
+    max-height: 400px;
+  }
+  .info-tab {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    border-radius: 20px !important;
+    padding: 20px !important;
+    margin-top: 20px !important;
+    box-shadow: 0 0 25px #ee82ee !important;
+    animation: none !important;
+  }
+  .presentation {
+    max-width: 90vw;
+    padding: 25px 20px;
+    margin-top: 30px;
+  }
+  .gallery {
+    max-width: 90vw;
+  }
+}
   </style>
 </head>
 <body>
@@ -367,7 +369,7 @@
         e quero que sinta cada amanhecer comigo.
       </p>
       <p>
-        Eu te amo.
+        Eu te amo, bj
       </p>
     </section>
 
